@@ -77,9 +77,10 @@ export default function Contact() {
     <section
       id="contact"
       ref={container}
-      className="px-4 md:px-6 py-16 md:py-24 bg-neutral-50"
+      className="px-4 md:px-6 py-16 md:py-24 bg-neutral-50 overflow-hidden"
     >
       <div className="w-full max-w-[1400px] mx-auto">
+        {/* Header Label */}
         <div className="contact-reveal flex items-center gap-4 mb-8 md:mb-12">
           <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-neutral-400">
             Section 04
@@ -90,92 +91,94 @@ export default function Contact() {
           </span>
         </div>
 
-        <div className="bento-container grid grid-cols-12 border-t-2 border-l-2 border-black relative">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-12 border-t-2 border-l-2 border-black relative bg-white">
           <GridMarker className="-top-[8px] -left-[8px]" />
           <GridMarker className="-bottom-[8px] -right-[8px]" />
 
-          {/* Black info box */}
+          {/* Black Info Box */}
           <div className="col-span-12 md:col-span-5 border-r-2 border-b-2 border-black bg-black text-white">
-            <div className="contact-reveal p-6 md:p-10 flex flex-col justify-between h-full gap-6 md:gap-0">
+            <div className="contact-reveal p-8 md:p-12 flex flex-col justify-between h-full gap-10">
               <p className="text-[9px] font-bold tracking-[0.18em] uppercase text-neutral-500">
-                08 / Get in touch
+                08 / Status: Available
               </p>
               <div>
-                <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight leading-tight mb-4 md:mb-6">
-                  Let's Work
-                  <br />
-                  Together.
+                <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight leading-[0.9] mb-6">
+                  Let's Build <br />
+                  Something.
                 </h2>
-                <p className="font-mono text-xs text-neutral-400 leading-relaxed">
-                  Open for freelance projects, full-time roles, and
-                  collaborations. Whether it's a brand identity, a web app, or
-                  something in between — let's talk.
+                <p className="font-mono text-xs text-neutral-400 leading-relaxed max-w-xs">
+                  Currently open for <b>freelance projects, part-time roles</b>,
+                  and creative collaborations. If you have an idea that needs a
+                  technical edge — let's talk.
                 </p>
               </div>
               <a
                 href="mailto:joshuacambronero.personal@gmail.com"
-                className="font-mono text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer w-fit break-all"
+                className="font-mono text-[10px] md:text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer w-fit break-all underline underline-offset-4"
               >
                 joshuacambronero.personal@gmail.com ↗
               </a>
             </div>
           </div>
 
-          {/* Form */}
-          <div className="col-span-12 md:col-span-7 border-r-2 border-b-2 border-black hover:bg-white transition-colors duration-300">
-            <div className="contact-reveal p-6 md:p-10 h-full">
+          {/* Contact Form Cell */}
+          <div className="col-span-12 md:col-span-7 border-r-2 border-b-2 border-black transition-colors duration-300">
+            <div className="contact-reveal p-8 md:p-12 h-full">
               {sent ? (
-                <div className="h-full flex items-center justify-center text-center min-h-[200px] md:min-h-[250px]">
+                <div className="h-full flex items-center justify-center text-center py-12">
                   <div>
-                    <p className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight mb-3">
-                      Message Sent ✓
+                    <p className="font-display text-3xl font-bold uppercase tracking-tight mb-3">
+                      Message Sent
                     </p>
                     <p className="font-mono text-xs text-neutral-500">
-                      I'll get back to you shortly.
+                      I'll check my inbox and get back to you shortly.
                     </p>
                   </div>
                 </div>
               ) : (
                 <form
                   onSubmit={handleSubmit}
-                  className="flex flex-col gap-6 md:gap-8 h-full justify-center"
+                  className="flex flex-col gap-8 h-full justify-center"
                 >
-                  <div>
-                    <label className="text-[9px] font-bold tracking-[0.18em] uppercase text-neutral-400 block mb-2">
-                      Name
-                    </label>
-                    <input
-                      className={inputClass}
-                      placeholder="Your name"
-                      value={form.name}
-                      onChange={(e) =>
-                        setForm((f) => ({ ...f, name: e.target.value }))
-                      }
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="text-[9px] font-bold tracking-[0.18em] uppercase text-neutral-400 block mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className={inputClass}
-                      placeholder="your@email.com"
-                      value={form.email}
-                      onChange={(e) =>
-                        setForm((f) => ({ ...f, email: e.target.value }))
-                      }
-                      required
-                    />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <label className="text-[9px] font-bold tracking-[0.18em] uppercase text-neutral-400 block mb-2">
+                        Name
+                      </label>
+                      <input
+                        className={inputClass}
+                        placeholder="Goddess Snowi"
+                        value={form.name}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, name: e.target.value }))
+                        }
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[9px] font-bold tracking-[0.18em] uppercase text-neutral-400 block mb-2">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        className={inputClass}
+                        placeholder="goddesssnowi@example.com"
+                        value={form.email}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, email: e.target.value }))
+                        }
+                        required
+                      />
+                    </div>
                   </div>
                   <div>
                     <label className="text-[9px] font-bold tracking-[0.18em] uppercase text-neutral-400 block mb-2">
                       Message
                     </label>
                     <textarea
-                      className={`${inputClass} resize-none h-24 md:h-28`}
-                      placeholder="Tell me about your project..."
+                      className={`${inputClass} resize-none h-32`}
+                      placeholder="Briefly describe your project or inquiry..."
                       value={form.message}
                       onChange={(e) =>
                         setForm((f) => ({ ...f, message: e.target.value }))
@@ -184,41 +187,38 @@ export default function Contact() {
                     />
                   </div>
                   {error && (
-                    <p className="font-mono text-xs text-red-500 -mt-2 md:-mt-4">
-                      Something went wrong — please try again or email me
-                      directly.
+                    <p className="font-mono text-xs text-red-500 -mt-4">
+                      Error sending message. Please try again later.
                     </p>
                   )}
                   <button
                     type="submit"
                     disabled={loading}
-                    className="self-start font-mono text-xs font-bold uppercase tracking-widest px-6 md:px-8 py-3 md:py-4 bg-black text-white hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="self-start font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest px-10 py-4 bg-black text-white hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50"
                   >
-                    {loading ? "Sending..." : "Send Message →"}
+                    {loading ? "Sending..." : "Submit Inquiry →"}
                   </button>
                 </form>
               )}
             </div>
           </div>
 
-          {/* Socials — 2-col on mobile, 4-col on desktop */}
+          {/* Social Grid Items */}
           {SOCIALS.map((s) => (
             <a
               key={s.label}
               href={s.href}
               target={s.href.startsWith("mailto") ? undefined : "_blank"}
-              rel={
-                s.href.startsWith("mailto") ? undefined : "noopener noreferrer"
-              }
-              className="col-span-6 md:col-span-3 border-r-2 border-b-2 border-black group hover:bg-black hover:text-white transition-all duration-200 cursor-pointer block"
+              rel="noopener noreferrer"
+              className="col-span-6 md:col-span-3 border-r-2 border-b-2 border-black group hover:bg-black hover:text-white transition-all duration-300 cursor-pointer block"
             >
-              <div className="contact-reveal p-4 md:p-6 h-full flex flex-col justify-center">
-                <p className="text-[9px] font-bold tracking-[0.16em] uppercase text-neutral-400 group-hover:text-neutral-500 mb-1.5 md:mb-2 transition-colors">
+              <div className="contact-reveal p-6 md:p-8 h-full flex flex-col justify-center">
+                <p className="text-[9px] font-bold tracking-[0.16em] uppercase text-neutral-400 group-hover:text-neutral-500 mb-2 transition-colors">
                   {s.label}
                 </p>
                 <p className="font-mono text-[10px] md:text-xs font-bold text-black group-hover:text-white tracking-wide transition-colors truncate">
                   {s.handle}{" "}
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="inline-block transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
                     ↗
                   </span>
                 </p>

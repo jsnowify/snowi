@@ -11,7 +11,7 @@ const facts = [
   { idx: "01", label: "Role", value: "Designer & Developer" },
   { idx: "02", label: "Specialty", value: "Front-end + Android" },
   { idx: "03", label: "Education", value: "BS Information Technology" },
-  { idx: "04", label: "Availability", value: "Freelance & Full-time" },
+  { idx: "04", label: "Availability", value: "Freelance & Part-time" }, // Updated per your request
 ];
 
 function FactCell({ f, isLast }) {
@@ -144,7 +144,8 @@ export default function About() {
           </span>
         </div>
 
-        <div className="bento-container grid grid-cols-12 border-t-2 border-l-2 border-black relative">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-12 border-t-2 border-l-2 border-black relative">
           <GridMarker className="-top-[8px] -left-[8px]" />
           <GridMarker className="-bottom-[8px] -right-[8px]" />
 
@@ -158,8 +159,9 @@ export default function About() {
             <p className="font-mono text-sm md:text-base leading-[1.7] text-neutral-600">
               I obsess over the things most people scroll right past — the snap
               of a transition, the exact weight of a border, and the logic
-              powering it all under the hood. If it doesn't look sharp and run
-              flawlessly, I don't ship it.
+              powering it all under the hood. Currently focusing on{" "}
+              <b>part-time engagements</b> where I can push technical boundaries
+              and deliver high-impact design.
             </p>
           </div>
 

@@ -18,6 +18,11 @@ export default function Preloader({ onComplete }) {
       const counter = counterRef.current;
       const tagline = taglineRef.current;
 
+      // Select grid elements
+      const gridY = overlay.querySelectorAll(".grid-line-y");
+      const gridX = overlay.querySelectorAll(".grid-line-x");
+      const corners = overlay.querySelectorAll(".corner-marker");
+
       document.body.style.overflow = "hidden";
 
       const tl = gsap.timeline({
@@ -27,18 +32,63 @@ export default function Preloader({ onComplete }) {
         },
       });
 
+      // Initial Grid States - Added opacity control for a smoother fade-in while scaling
+      gsap.set(gridY, { scaleY: 0, opacity: 0 });
+      gsap.set(gridX, { scaleX: 0, opacity: 0 });
+      gsap.set(corners, { opacity: 0, scale: 0 });
+
       // Phase 1: Enter & Scramble
       tl.set(overlay, { yPercent: 0 })
-        .to(name, {
-          duration: 1.1,
-          scrambleText: {
-            text: "Snowi Wu",
-            chars: "upperCase",
-            speed: 0.5,
+        // --- UX Grid Enter Animation ---
+        // Staggered the drawing of the lines so they cascade rather than popping in at once
+        .to(
+          gridY,
+          {
+            scaleY: 1,
+            opacity: 1,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "expo.inOut",
           },
-          ease: "none",
-          delay: 0.2,
-        })
+          0,
+        )
+        .to(
+          gridX,
+          {
+            scaleX: 1,
+            opacity: 1,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "expo.inOut",
+          },
+          0.2,
+        )
+        .to(
+          corners,
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "back.out(1.5)",
+          },
+          0.5,
+        )
+        // -------------------------------
+        .to(
+          name,
+          {
+            duration: 1.1,
+            scrambleText: {
+              text: "Snowi Wu",
+              chars: "upperCase",
+              speed: 0.5,
+            },
+            ease: "none",
+            delay: 0.2,
+          },
+          0,
+        )
         .to(name, {
           duration: 1.0,
           scrambleText: {
@@ -82,15 +132,51 @@ export default function Preloader({ onComplete }) {
         stagger: 0.05,
         ease: "power2.in",
         delay: 0.3,
-      }).to(
-        overlay,
-        {
-          yPercent: -100,
-          duration: 0.9,
-          ease: "expo.inOut",
-        },
-        "-=0.1",
-      );
+      })
+        // --- UX Grid Exit Animation ---
+        .to(
+          corners,
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "power2.in",
+          },
+          "-=0.4",
+        )
+        .to(
+          gridX,
+          {
+            scaleX: 0,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: "expo.inOut",
+          },
+          "-=0.3",
+        )
+        .to(
+          gridY,
+          {
+            scaleY: 0,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: "expo.inOut",
+          },
+          "-=0.4",
+        )
+        // ------------------------------
+        .to(
+          overlay,
+          {
+            yPercent: -100,
+            duration: 0.9,
+            ease: "expo.inOut",
+          },
+          "-=0.1",
+        );
     },
     { dependencies: [onComplete] },
   );
@@ -100,10 +186,24 @@ export default function Preloader({ onComplete }) {
       ref={overlayRef}
       className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center pointer-events-all"
     >
-      {/* Grid Overlay */}
+      {/* Upgraded Grid Overlay */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/5" />
-        <div className="absolute top-1/2 left-0 right-0 h-px bg-white/5" />
+        {/* Vertical Rule of Thirds Lines */}
+        {[25, 50, 75].map((pos, i) => (
+          <div
+            key={`v-${i}`}
+            className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent origin-center grid-line-y"
+            style={{ left: `${pos}%` }}
+          />
+        ))}
+        {/* Horizontal Rule of Thirds Lines */}
+        {[25, 50, 75].map((pos, i) => (
+          <div
+            key={`h-${i}`}
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent origin-center grid-line-x"
+            style={{ top: `${pos}%` }}
+          />
+        ))}
       </div>
 
       {/* Corner Markers */}
@@ -115,7 +215,7 @@ export default function Preloader({ onComplete }) {
       ].map((pos, i) => (
         <div
           key={i}
-          className={`absolute ${pos} w-8 h-8 border-white/20`}
+          className={`absolute ${pos} w-8 h-8 border-white/30 origin-center corner-marker`}
           style={{
             borderTopWidth: i < 2 ? "1px" : 0,
             borderBottomWidth: i >= 2 ? "1px" : 0,
@@ -131,7 +231,7 @@ export default function Preloader({ onComplete }) {
         </p>
         <h1
           ref={nameRef}
-          className="font-display text-[clamp(3rem,10vw,8rem)] uppercase leading-[0.85] tracking-tighter text-white"
+          className="font-display text-[clamp(3rem,10vw,8rem)] uppercase leading-[0.85] tracking-tighter text-white drop-shadow-md"
         >
           &nbsp;
         </h1>
@@ -146,14 +246,14 @@ export default function Preloader({ onComplete }) {
       <div className="absolute bottom-8 right-8">
         <span
           ref={counterRef}
-          className="font-mono text-[11px] tracking-widest text-white/30"
+          className="font-mono text-[11px] tracking-widest text-white/40"
         >
           000
         </span>
       </div>
 
       <div className="absolute bottom-8 left-8">
-        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/20">
+        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/30">
           Loading
         </span>
       </div>
