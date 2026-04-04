@@ -209,8 +209,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* STATUS BOX */}
-          <div className="bento-cell col-span-12 md:col-span-4 border-r-2 border-b-2 border-black bg-white p-6 md:p-12 flex flex-row md:flex-col justify-around md:justify-center gap-6 md:gap-10">
+          {/* STATUS, LOCATION & DOCUMENTS SIDEBAR */}
+          <div className="bento-cell col-span-12 md:col-span-4 border-r-2 border-b-2 border-black bg-white p-6 md:p-12 flex flex-col justify-between gap-8">
             <div className="hero-sub">
               <p className="text-[10px] font-bold tracking-[0.2em] text-neutral-400 mb-3 uppercase">
                 Status
@@ -225,14 +225,36 @@ export default function Hero() {
                 snowi.void
               </p>
             </div>
+
+            {/* DOCUMENTS LINKS SECTION */}
+            <div className="hero-sub border-y border-neutral-100 py-6">
+              <p className="text-[10px] font-bold tracking-[0.2em] text-neutral-400 mb-4 uppercase">
+                Documents
+              </p>
+              <div className="flex flex-col gap-3">
+                <a
+                  href="/docs/Joshua_Cambronero_Resume.pdf"
+                  target="_blank"
+                  className="text-xs font-bold uppercase tracking-widest text-black hover:text-neutral-500 transition-colors flex items-center justify-between"
+                >
+                  Resume <span>↗</span>
+                </a>
+                <a
+                  href="/docs/Joshua_Cambronero_CV.pdf"
+                  target="_blank"
+                  className="text-xs font-bold uppercase tracking-widest text-black hover:text-neutral-500 transition-colors flex items-center justify-between"
+                >
+                  Curriculum Vitae <span>↗</span>
+                </a>
+              </div>
+            </div>
+
             <div className="hero-sub">
               <p className="text-[10px] font-bold tracking-[0.2em] text-neutral-400 mb-3 uppercase">
                 Location
               </p>
               <p className="text-sm font-bold uppercase tracking-wider leading-relaxed text-black">
-                Davao Region
-                <br />
-                PH
+                Davao Region, PH
               </p>
               <p className="text-[10px] text-neutral-400 tracking-widest uppercase mt-2">
                 UTC+8
@@ -240,6 +262,7 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* ROLE CARDS RETURNED TO ORIGINAL SPOTS */}
           <RoleCard slotIndex={0} />
           <RoleCard slotIndex={1} />
           <RoleCard slotIndex={2} />
