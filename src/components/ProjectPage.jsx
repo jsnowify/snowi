@@ -20,12 +20,12 @@ const PROJECT_DATA = {
       "Focused on clear hierarchy, vibrant color palettes, and highly readable typography to ensure information is quickly digested by the student body.",
     outcome:
       "Successfully increased event engagement and established consistent, recognizable visual identities for multiple campus orgs.",
-    heroImage: "../public/imgs/1.png",
+    heroImage: "/imgs/1.png",
     images: [
-      "../public/imgs/school/1.png",
-      "../public/imgs/school/2.png",
-      "../public/imgs/school/3.png",
-      "../public/imgs/school/4.png",
+      "/imgs/school/1.png",
+      "/imgs/school/2.png",
+      "/imgs/school/3.png",
+      "/imgs/school/4.png",
     ],
     link: null,
   },
@@ -43,18 +43,18 @@ const PROJECT_DATA = {
       "Utilized aggressive typography, glowing accents, and metallic textures typical of gaming aesthetics, while keeping the data zones (scores, player cams, timers) rigorously clean and legible.",
     outcome:
       "Delivered professional-grade tournament assets that elevated the production value of the streams and enhanced the viewer experience.",
-    heroImage: "../public/imgs/2.jpg",
+    heroImage: "/imgs/2.jpg",
     images: [
-      "../public/imgs/esports/7.png",
-      "../public/imgs/esports/2.png",
-      "../public/imgs/esports/3.png",
-      "../public/imgs/esports/1.jpg",
-      "../public/imgs/esports/4.jpg",
-      "../public/imgs/esports/5.jpg",
-      "../public/imgs/esports/8.png",
-      "../public/imgs/esports/9.png",
-      "../public/imgs/esports/10.png",
-      "../public/imgs/esports/11.png",
+      "/imgs/esports/7.png",
+      "/imgs/esports/2.png",
+      "/imgs/esports/3.png",
+      "/imgs/esports/1.jpg",
+      "/imgs/esports/4.jpg",
+      "/imgs/esports/5.jpg",
+      "/imgs/esports/8.png",
+      "/imgs/esports/9.png",
+      "/imgs/esports/10.png",
+      "/imgs/esports/11.png",
     ],
     link: null,
   },
@@ -72,18 +72,18 @@ const PROJECT_DATA = {
       "Treated each piece as a playground to test out new grid systems, color blending techniques, and vector illustrations.",
     outcome:
       "A growing library of visual assets that continually pushes my technical skills and defines my personal aesthetic as a designer.",
-    heroImage: "../public/imgs/3.png",
+    heroImage: "/imgs/3.png",
     images: [
-      "../public/imgs/personal/1.png",
-      "../public/imgs/personal/2.png",
-      "../public/imgs/personal/3.png",
-      "../public/imgs/personal/4.png",
-      "../public/imgs/personal/5.png",
-      "../public/imgs/personal/6.png",
-      "../public/imgs/personal/7.png",
-      "../public/imgs/personal/8.png",
-      "../public/imgs/personal/9.png",
-      "../public/imgs/personal/11.png",
+      "/imgs/personal/1.png",
+      "/imgs/personal/2.png",
+      "/imgs/personal/3.png",
+      "/imgs/personal/4.png",
+      "/imgs/personal/5.png",
+      "/imgs/personal/6.png",
+      "/imgs/personal/7.png",
+      "/imgs/personal/8.png",
+      "/imgs/personal/9.png",
+      "/imgs/personal/11.png",
     ],
     link: null,
   },
@@ -103,10 +103,10 @@ const PROJECT_DATA = {
       "Deployed and actively used by the student community. Moderation workflow keeps the feed clean without killing the organic feel.",
     heroImage: "/imgs/dssc/1.png",
     images: [
-      "../public/imgs/dssc/2.png",
-      "../public/imgs/dssc/3.png",
-      "../public/imgs/dssc/4.png",
-      "../public/imgs/dssc/5.png",
+      "/imgs/dssc/2.png",
+      "/imgs/dssc/3.png",
+      "/imgs/dssc/4.png",
+      "/imgs/dssc/5.png",
     ],
     link: "https://dssconfessions.vercel.app/",
   },
@@ -253,7 +253,7 @@ export default function ProjectPage() {
               )}
             </div>
 
-            {/* ── Hero Image — border follows the image exactly, zero whitespace ── */}
+            {/* ── Hero Image ── */}
             <div
               className="col-span-12 border-r-2 border-b-2 border-black overflow-hidden group"
               style={{ lineHeight: 0 }}
@@ -307,15 +307,7 @@ export default function ProjectPage() {
             </div>
           </div>
 
-          {/* ── Gallery ──
-              The wrapper has NO fixed height and NO flex centering — it's purely
-              a border box that block-wraps the image. lineHeight:0 kills the
-              ~4px inline gap browsers put under <img> by default.
-              The image itself is w-full h-auto so it fills the column width and
-              its height is exactly its natural aspect ratio — no whitespace ever.
-              max-height via inline style caps extreme images without letterboxing
-              because object-cover kicks in only when the cap is actually hit,
-              and we accept a small crop in that extreme case over dead whitespace. */}
+          {/* ── Gallery ── */}
           {project.images.length > 0 && (
             <div className="page-reveal grid grid-cols-12 border-l-2 border-black">
               {project.images.map((src, i) => {
@@ -337,17 +329,6 @@ export default function ProjectPage() {
                   </div>
                 );
               })}
-            </div>
-          )}
-
-          {/* Placeholder when no gallery images */}
-          {project.images.length === 0 && (
-            <div className="page-reveal grid grid-cols-12 border-l-2 border-black">
-              <div className="col-span-12 border-r-2 border-b-2 border-black h-48 bg-neutral-50 flex items-center justify-center">
-                <p className="font-mono text-xs text-neutral-300 tracking-widest uppercase">
-                  [ Gallery Images / Mockups go here ]
-                </p>
-              </div>
             </div>
           )}
 
