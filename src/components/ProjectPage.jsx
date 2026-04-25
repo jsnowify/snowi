@@ -142,8 +142,15 @@ const PROJECT_DATA = {
       "Developed natively in Kotlin. Prioritized user transparency by designing a strict 3-paragraph consent form that explicitly outlines what happens to the collected dataset after the study concludes.",
     outcome:
       "In active development. Architecture and foundational ML pipelines established.",
-    heroImage: null,
-    images: [],
+    heroImage: "/imgs/snuzz/1.png",
+    images: [
+      "/imgs/snuzz/1.png",
+      "/imgs/snuzz/2.png",
+      "/imgs/snuzz/3.png",
+      "/imgs/snuzz/4.png",
+      "/imgs/snuzz/5.png",
+      "/imgs/snuzz/6.png",
+    ],
     link: null,
   },
 };

@@ -17,7 +17,7 @@ const devSkills = [
   { name: "React", note: "Hooks, Context, Vite" },
   { name: "Tailwind CSS", note: "Utility-first CSS" },
   { name: "GSAP", note: "ScrollTrigger, Timelines" },
-  { name: "JavaScript", note: "ES6+, Async/Await, DOM", highlight: true }, // Highlighted
+  { name: "JavaScript", note: "ES6+, Async/Await, DOM", highlight: true },
   { name: "TypeScript", note: "Typed JS" },
   { name: "Kotlin / Android", note: "Native, Jetpack" },
   { name: "Java", note: "OOP, Backend basics" },
