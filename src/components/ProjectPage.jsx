@@ -151,7 +151,7 @@ const PROJECT_DATA = {
       "/imgs/snuzz/5.png",
       "/imgs/snuzz/6.png",
     ],
-    link: null,
+    link: "https://snuzz-application.vercel.app/",
   },
 };
 
