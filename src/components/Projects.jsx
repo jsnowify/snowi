@@ -68,7 +68,7 @@ const sysProjects = [
     desc: "An undergraduate capstone Android application utilizing machine learning for data collection.",
     bg: "bg-neutral-200",
     preview: "mobile",
-    mainImage: null,
+    mainImage: "/imgs/snuzz/1.png",
     colSpan: "md:col-span-5",
   },
 ];
