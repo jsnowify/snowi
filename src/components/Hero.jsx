@@ -7,7 +7,7 @@ import GridMarker from "./GridMarker";
 gsap.registerPlugin(ScrambleTextPlugin);
 
 const roles = [
-  { id: "01", label: "Engineer", title: "Software\nEngineer" },
+  { id: "01", label: "Engineer", title: "Software\nDeveloper" },
   { id: "02", label: "Design", title: "Graphic\nDesigner" },
   { id: "03", label: "Experience", title: "UI & UX\nDesigner" },
 ];
@@ -197,12 +197,12 @@ export default function Hero() {
           >
             <div className="hero-name-wrapper relative w-full h-[clamp(7rem,14vw,14rem)] flex items-center">
               <ScrambleName
-                lines={["Snowi", "Wu"]}
+                lines={["Joshua", "Cambronero"]}
                 active={!isRevealed}
                 className={`text-white ${isRevealed ? "-translate-y-12 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"} ${sharedNameClass}`}
               />
               <ScrambleName
-                lines={["Joshua", "Cambronero"]}
+                lines={["Snowi"]}
                 active={isRevealed}
                 className={`text-neutral-400 ${isRevealed ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0 pointer-events-none"} ${sharedNameClass}`}
               />

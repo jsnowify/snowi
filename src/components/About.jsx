@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,10 +8,14 @@ import GridMarker from "./GridMarker";
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
 const facts = [
-  { idx: "01", label: "Role", value: "Designer & Developer" },
-  { idx: "02", label: "Specialty", value: "Front-end + Android" },
+  { idx: "01", label: "Role", value: "Developer & Designer" },
+  {
+    idx: "02",
+    label: "Specialty",
+    value: "Software Development + UI/UX Design",
+  },
   { idx: "03", label: "Education", value: "BS Information Technology" },
-  { idx: "04", label: "Availability", value: "Freelance & Part-time" }, // Updated per your request
+  { idx: "04", label: "Availability", value: "Part-time & Full-Time" },
 ];
 
 function FactCell({ f, isLast }) {
@@ -57,12 +61,12 @@ function FactCell({ f, isLast }) {
   );
 }
 
-function ScrambleInlineName() {
+function ScrambleInlineName({ onActiveChange }) {
   const textRef = useRef();
   const tweenRef = useRef(null);
   const activeRef = useRef(false);
-  const ALIAS = "Snowi Wu";
-  const REAL = "Joshua Cambronero";
+  const ALIAS = "Joshua";
+  const REAL = "Snowi";
 
   const to = (target, speed = 0.6) => {
     if (tweenRef.current) tweenRef.current.kill();
@@ -75,14 +79,19 @@ function ScrambleInlineName() {
 
   const handleEnter = () => {
     activeRef.current = true;
+    onActiveChange?.(true);
     to(REAL, 0.6);
   };
+
   const handleLeave = () => {
     activeRef.current = false;
+    onActiveChange?.(false);
     to(ALIAS, 0.8);
   };
+
   const handleTap = () => {
     activeRef.current = !activeRef.current;
+    onActiveChange?.(activeRef.current);
     to(activeRef.current ? REAL : ALIAS, 0.7);
   };
 
@@ -104,6 +113,7 @@ function ScrambleInlineName() {
 
 export default function About() {
   const container = useRef();
+  const [isSnowiActive, setIsSnowiActive] = useState(false);
 
   useGSAP(
     () => {
@@ -115,6 +125,7 @@ export default function About() {
         stagger: 0.1,
         ease: "expo.out",
       });
+
       gsap.from(".philosophy-phrase", {
         scrollTrigger: { trigger: ".philosophy-strip", start: "top 85%" },
         opacity: 0,
@@ -152,16 +163,18 @@ export default function About() {
           {/* Bio */}
           <div className="about-reveal col-span-12 md:col-span-8 border-r-2 border-b-2 border-black p-6 md:p-12 hover:bg-neutral-50 transition-colors duration-300">
             <p className="font-mono text-[clamp(0.9rem,2vw,1.25rem)] leading-[1.6] text-black mb-5">
-              I'm <ScrambleInlineName />, a designer who codes and an engineer
-              who designs. Operating out of the Davao Region, I build native
-              Android apps and React platforms that refuse to be boring.
+              I'm <ScrambleInlineName onActiveChange={setIsSnowiActive} />,{" "}
+              {isSnowiActive
+                ? "my digital alter ego since 2021. 'Snowi' isn't just a moniker—it's the creative identity behind every line of code I write and every pixel I push."
+                : "a designer who codes, and an engineer who designs. I engineer native Android apps and React platforms with one strict rule: absolutely nothing boring."}
             </p>
+
             <p className="font-mono text-sm md:text-base leading-[1.7] text-neutral-600">
-              I obsess over the things most people scroll right past — the snap
-              of a transition, the exact weight of a border, and the logic
-              powering it all under the hood. Currently focusing on{" "}
-              <b>part-time engagements</b> where I can push technical boundaries
-              and deliver high-impact design.
+              Most people just scroll. I obsess over the mechanics—the tension
+              in a UI transition, the perfect border weight, and the complex
+              logic running quietly under the hood. Currently open to{" "}
+              <b>part-time</b> or <b>full-time opportunities</b> that push
+              technical boundaries and demand high-impact design.
             </p>
           </div>
 

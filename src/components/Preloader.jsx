@@ -80,7 +80,7 @@ export default function Preloader({ onComplete }) {
           {
             duration: 1.1,
             scrambleText: {
-              text: "Snowi Wu",
+              text: "Snowi",
               chars: "upperCase",
               speed: 0.5,
             },

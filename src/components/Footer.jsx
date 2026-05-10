@@ -7,8 +7,8 @@ gsap.registerPlugin(ScrambleTextPlugin);
 function ScrambleFooterName() {
   const ref = useRef();
   const tween = useRef(null);
-  const ALIAS = "Snowi Wu";
-  const REAL = "Joshua Cambronero";
+  const ALIAS = "Joshua Cambronero";
+  const REAL = "Snowi Wu ";
 
   const to = (target) => {
     if (tween.current) tween.current.kill();

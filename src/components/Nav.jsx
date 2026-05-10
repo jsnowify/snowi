@@ -44,8 +44,8 @@ function ScrambleLogo({ onClick }) {
   const ref = useRef();
   const tween = useRef(null);
   const activeRef = useRef(false);
-  const ALIAS = "SW";
-  const REAL = "JC";
+  const ALIAS = "JC";
+  const REAL = "S";
 
   const to = (target, speed = 0.6) => {
     if (tween.current) tween.current.kill();
