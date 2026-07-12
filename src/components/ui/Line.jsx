@@ -1,4 +1,4 @@
-const Line = ({ orientation = "horizontal", className = "" }) => {
+export default function Line({ orientation = "horizontal", className = "" }) {
   return (
     <div
       className={`bg-slate-200 absolute ${
@@ -6,4 +6,4 @@ const Line = ({ orientation = "horizontal", className = "" }) => {
       } ${className}`}
     />
   );
-};
+}

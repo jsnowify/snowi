@@ -73,12 +73,18 @@ const sysProjects = [
   },
 ];
 
+// Computed once at module load instead of on every render of every card.
+const isTouchDevice =
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
 function ProjectPreview({ type, project }) {
   if (project.mainImage) {
     return (
       <img
         src={project.mainImage}
         alt={project.title}
+        loading="lazy"
         className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
       />
     );
@@ -147,7 +153,6 @@ function CursorFollower({ project, visible }) {
       duration: 0.3,
       ease: "power2.out",
     });
-    // Suppress global cursor dot/ring while follower shows
     const dot = document.querySelector("[data-cursor-dot]");
     const ring = document.querySelector("[data-cursor-ring]");
     if (visible) {
@@ -186,29 +191,24 @@ function CursorFollower({ project, visible }) {
 function ProjectCard({ project }) {
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
-  const isTouch =
-    typeof window !== "undefined" &&
-    window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
   return (
     <div
       className={`col-span-12 ${project.colSpan} border-r-2 border-b-2 border-black group ${
-        isTouch ? "cursor-pointer" : "cursor-none"
+        isTouchDevice ? "cursor-pointer" : "cursor-none"
       } hover:bg-white transition-colors duration-300 relative overflow-hidden`}
-      onMouseEnter={() => !isTouch && setHovered(true)}
+      onMouseEnter={() => !isTouchDevice && setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => navigate(`/projects/${project.slug}`)}
     >
-      {!isTouch && <CursorFollower project={project} visible={hovered} />}
+      {!isTouchDevice && <CursorFollower project={project} visible={hovered} />}
 
       <div className="proj-reveal h-full flex flex-col">
-        {/* Image */}
         <div
           className={`relative w-full h-48 md:h-64 ${project.bg} overflow-hidden border-b-2 border-black/5`}
         >
           <ProjectPreview type={project.preview} project={project} />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300" />
-          {/* Mobile tap hint */}
           <span className="md:hidden absolute top-3 right-3 text-white/60 text-sm font-bold">
             ↗
           </span>

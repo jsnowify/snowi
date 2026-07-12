@@ -55,7 +55,7 @@
   }
 
   /* Selection */
-  ::-selection {
+  ::selection {
     background: black;
     color: white;
   }

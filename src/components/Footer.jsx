@@ -8,7 +8,7 @@ function ScrambleFooterName() {
   const ref = useRef();
   const tween = useRef(null);
   const ALIAS = "Joshua Cambronero";
-  const REAL = "Snowi Wu ";
+  const REAL = "Snowi";
 
   const to = (target) => {
     if (tween.current) tween.current.kill();
@@ -65,16 +65,13 @@ export default function Footer() {
   return (
     <footer className="border-t-2 border-black px-6 py-8 bg-white">
       <div className="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        {/* Left: Scramble Name */}
         <ScrambleFooterName />
 
-        {/* Center: Metadata & Real-time Clock */}
         <div className="font-mono text-[10px] text-neutral-400 tracking-widest uppercase">
           © {year} · Davao Region, PH ·{" "}
           <span className="text-black font-bold">{time} PHT</span>
         </div>
 
-        {/* Right: Back to Top */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="font-mono text-[10px] font-bold uppercase tracking-widest text-black hover:text-neutral-500 transition-colors cursor-pointer"

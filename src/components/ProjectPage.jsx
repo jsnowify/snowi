@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -9,7 +9,7 @@ const PROJECT_DATA = {
   "school-org-graphics": {
     title: "School & Org Graphics",
     category: "Visual Design",
-    year: "2024–2026",
+    year: "2024-2026",
     tags: ["Posters", "Pubmats", "Social Media"],
     role: "Graphic Designer",
     summary:
@@ -32,7 +32,7 @@ const PROJECT_DATA = {
   "esports-mlbb-graphics": {
     title: "Esports & MLBB Graphics",
     category: "Esports Design",
-    year: "2024–2026",
+    year: "2024-2026",
     tags: ["Overlays", "Tournament", "Socials"],
     role: "Broadcast & Visual Designer",
     summary:
@@ -94,11 +94,11 @@ const PROJECT_DATA = {
     tags: ["React", "Node.js", "Supabase", "Tailwind"],
     role: "Full-Stack Developer",
     summary:
-      "A web-based community confession platform built for the student body — anonymous submissions, moderation tools, and a public feed.",
+      "A web-based community confession platform built for the student body - anonymous submissions, moderation tools, and a public feed.",
     challenge:
       "Building anonymous submission infrastructure that prevents abuse without requiring accounts, while keeping the feed feel authentic and community-driven.",
     approach:
-      "Supabase handles auth and real-time DB. Submissions are fully anonymous on the client — no user ID attached. A lightweight moderation queue lets admins approve or reject before anything hits the public feed.",
+      "Supabase handles auth and real-time DB. Submissions are fully anonymous on the client - no user ID attached. A lightweight moderation queue lets admins approve or reject before anything hits the public feed.",
     outcome:
       "Deployed and actively used by the student community. Moderation workflow keeps the feed clean without killing the organic feel.",
     heroImage: "/imgs/dssc/1.png",
@@ -117,11 +117,11 @@ const PROJECT_DATA = {
     tags: ["Kotlin", "Android", "Room DB"],
     role: "Android Developer",
     summary:
-      "Native Android app — category breakdowns, monthly charts, and CSV export.",
+      "Native Android app - category breakdowns, monthly charts, and CSV export.",
     challenge:
       "Most expense apps are either too simple or too complex. The goal was the sweet spot: meaningful insight without configuration overhead.",
     approach:
-      "Kotlin with Room for local persistence. No backend — everything stays on device. Monthly bar charts with MPAndroidChart. Category system is user-defined.",
+      "Kotlin with Room for local persistence. No backend - everything stays on device. Monthly bar charts with MPAndroidChart. Category system is user-defined.",
     outcome:
       "Fully functional app. CSV export opens directly in Google Sheets. Plans to publish to Play Store pending design polish.",
     heroImage: null,
@@ -161,6 +161,12 @@ export default function ProjectPage() {
   const container = useRef();
   const project = PROJECT_DATA[slug];
 
+  useEffect(() => {
+    document.title = project
+      ? project.title + " - Joshua Cambronero"
+      : "Project Not Found - Joshua Cambronero";
+  }, [project]);
+
   useGSAP(
     () => {
       gsap.from(".page-reveal", {
@@ -179,7 +185,7 @@ export default function ProjectPage() {
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
           <p className="font-mono text-sm text-neutral-400 mb-4">
-            404 — Project not found
+            404 - Project not found
           </p>
           <button
             onClick={() => navigate("/")}
@@ -205,10 +211,10 @@ export default function ProjectPage() {
             onClick={() => navigate(-1)}
             className="page-reveal font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 hover:text-black transition-colors mb-12 flex items-center gap-2"
           >
-            ← Back
+            {"<- Back"}
           </button>
 
-          {/* ── Header Grid ── */}
+          {/* Header Grid */}
           <div className="page-reveal bento-container grid grid-cols-12 border-t-2 border-l-2 border-black relative">
             <GridMarker className="-top-[8px] -left-[8px]" />
             <GridMarker className="-bottom-[8px] -right-[8px]" />
@@ -216,7 +222,7 @@ export default function ProjectPage() {
             {/* Title */}
             <div className="col-span-12 md:col-span-8 border-r-2 border-b-2 border-black p-5 md:p-12">
               <p className="text-[9px] font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
-                {project.category} — {project.year}
+                {project.category} - {project.year}
               </p>
               <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] uppercase leading-[0.9] tracking-tighter text-black">
                 {project.title}
@@ -255,12 +261,12 @@ export default function ProjectPage() {
                   rel="noopener noreferrer"
                   className="font-bold uppercase tracking-widest text-xs underline hover:text-neutral-500 transition-colors"
                 >
-                  View Live ↗
+                  {"View Live ->"}
                 </a>
               )}
             </div>
 
-            {/* ── Hero Image ── */}
+            {/* Hero Image */}
             <div
               className="col-span-12 border-r-2 border-b-2 border-black overflow-hidden group"
               style={{ lineHeight: 0 }}
@@ -268,7 +274,8 @@ export default function ProjectPage() {
               {project.heroImage ? (
                 <img
                   src={project.heroImage}
-                  alt={`${project.title} showcase`}
+                  alt={project.title + " showcase"}
+                  loading="lazy"
                   className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]"
                 />
               ) : (
@@ -284,7 +291,7 @@ export default function ProjectPage() {
             </div>
           </div>
 
-          {/* ── Content ── */}
+          {/* Content */}
           <div className="page-reveal grid grid-cols-12 border-l-2 border-black">
             <div className="col-span-12 border-r-2 border-b-2 border-black p-8 md:p-12 bg-black text-white">
               <p className="text-[9px] font-bold tracking-[0.2em] uppercase text-neutral-500 mb-4">
@@ -314,7 +321,7 @@ export default function ProjectPage() {
             </div>
           </div>
 
-          {/* ── Gallery ── */}
+          {/* Gallery */}
           {project.images.length > 0 && (
             <div className="page-reveal grid grid-cols-12 border-l-2 border-black">
               {project.images.map((src, i) => {
@@ -322,14 +329,15 @@ export default function ProjectPage() {
                 return (
                   <div
                     key={i}
-                    className={`${
-                      isAccent ? "col-span-12" : "col-span-12 md:col-span-6"
-                    } border-r-2 border-b-2 border-black overflow-hidden group cursor-crosshair`}
+                    className={
+                      (isAccent ? "col-span-12" : "col-span-12 md:col-span-6") +
+                      " border-r-2 border-b-2 border-black overflow-hidden group cursor-crosshair"
+                    }
                     style={{ lineHeight: 0 }}
                   >
                     <img
                       src={src}
-                      alt={`${project.title} — image ${i + 1}`}
+                      alt={project.title + " - image " + (i + 1)}
                       className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]"
                       loading="lazy"
                     />
@@ -339,7 +347,7 @@ export default function ProjectPage() {
             </div>
           )}
 
-          {/* ── Outcome ── */}
+          {/* Outcome */}
           <div className="page-reveal grid grid-cols-12 border-l-2 border-black">
             <div className="col-span-12 border-r-2 border-b-2 border-black p-8 md:p-12 hover:bg-neutral-50 transition-colors duration-300">
               <p className="text-[9px] font-bold tracking-[0.2em] uppercase text-neutral-400 mb-4">
@@ -351,13 +359,13 @@ export default function ProjectPage() {
             </div>
           </div>
 
-          {/* ── Footer Nav ── */}
+          {/* Footer Nav */}
           <div className="page-reveal mt-16 flex items-center justify-between">
             <button
               onClick={() => navigate(-1)}
               className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 hover:text-black transition-colors flex items-center gap-2"
             >
-              ← All Projects
+              {"<- All Projects"}
             </button>
             <p className="font-display text-xs uppercase tracking-widest text-neutral-300">
               {project.category}
