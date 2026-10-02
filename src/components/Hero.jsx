@@ -179,7 +179,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={container}
-      className={`flex items-start justify-center bg-white bg-grid px-4 md:px-6 pt-24 md:pt-28 pb-8 md:pb-12 transition-opacity duration-700 ${
+      className={`flex items-start justify-center bg-white bg-grid px-4 md:px-6 pt-32 md:pt-36 pb-8 md:pb-12 transition-opacity duration-700 ${
         readyToAnimate ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
